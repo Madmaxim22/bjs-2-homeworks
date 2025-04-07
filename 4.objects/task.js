@@ -11,7 +11,7 @@ Student.prototype.setSubject = function (subjectName) {
 
 Student.prototype.addMarks = function (...marks) {
   if("marks" in this) {
-    this.marks = [...marks];
+    this.marks.push(...marks);
   }
 }
 
@@ -34,6 +34,7 @@ let student1 = new Student("Василиса", "женский", 19);
 student1.setSubject("Algebra");
 console.log(student1.getAverage()); // 0
 student1.addMarks(4, 5, 4, 5);
+student1.addMarks(3, 6, 8, 9);
 console.log(student1.getAverage()); // 4.5
 console.log(student1);
 // {age: 19, gender: "женский", marks: [4, 5, 4, 5], name: "Василиса", subject: "Algebra"}
