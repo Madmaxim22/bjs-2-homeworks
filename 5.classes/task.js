@@ -4,31 +4,33 @@ class PrintEditionItem {
   name;
   releaseDate;
   pagesCount;
-  state = 100;
-  type = null;
+  _state;
+  type;
 
   constructor(name, releaseDate, pagesCount) {
     this.name = name;
     this.releaseDate = releaseDate;
     this.pagesCount = pagesCount;
+    this.state = 100;
+    this.type = null;
   }
 
   fix() {
-    this.setState = this.getState * 1.5;
+    this.state = this.state * 1.5;
   }
 
-  set setState(value) {
+  set state(value) {
     if (value <= 0) {
-      this.state = 0;
+      this._state = 0;
     } else if (value >= 100) {
-      this.state = 100;
+      this._state = 100;
     } else {
-      this.state = value;
+      this._state = value;
     }
   }
 
-  get getState() {
-    return this.state;
+  get state() {
+    return this._state;
   }
 }
 
@@ -68,7 +70,7 @@ class Library {
   }
 
   addBook(book) {
-    if (book.getState > 30) {
+    if (book.state > 30) {
       this.books.push(book);
     }
   }
@@ -131,10 +133,10 @@ console.log("Книг в библиотеке: " + library.books.length);
 let book1 = library.giveBookByName("451 градус по Фаренгейту");
 console.log("Книг в библиотеке: " + library.books.length);
 
-book1.setState = 90;
-console.log(book1.getState);
+book1.state = 90;
+console.log(book1.state);
 book1.fix();
-console.log(book1.getState);
+console.log(book1.state);
 // book1.state = 100;
 // console.log(book1.state);
 
