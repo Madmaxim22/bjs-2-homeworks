@@ -14,7 +14,7 @@ class PrintEditionItem {
   }
 
   fix() {
-    this.setState = this.state * 1.5;
+    this.setState = this.getState * 1.5;
   }
 
   set setState(value) {
