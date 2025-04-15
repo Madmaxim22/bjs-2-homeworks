@@ -14,10 +14,10 @@ class PrintEditionItem {
   }
 
   fix() {
-    this.state = this.state * 1.5;
+    this.setState = this.state * 1.5;
   }
 
-  set state(value) {
+  set setState(value) {
     if (value <= 0) {
       this.state = 0;
     } else if (value >= 100) {
@@ -27,7 +27,7 @@ class PrintEditionItem {
     }
   }
 
-  get state() {
+  get getState() {
     return this.state;
   }
 }
@@ -68,7 +68,7 @@ class Library {
   }
 
   addBook(book) {
-    if (book.state > 30) {
+    if (book.getState > 30) {
       this.books.push(book);
     }
   }
@@ -131,11 +131,13 @@ console.log("Книг в библиотеке: " + library.books.length);
 let book1 = library.giveBookByName("451 градус по Фаренгейту");
 console.log("Книг в библиотеке: " + library.books.length);
 
-console.log(book1);
-book1.state = 90;
-console.log(book1.state);
-book1.state = 100;
-console.log(book1.state);
+book1.setState = 90;
+console.log(book1.getState);
+book1.fix();
+console.log(book1.getState);
+// book1.state = 100;
+// console.log(book1.state);
+
 
 library.addBook(book1);
 console.log("Книг в библиотеке: " + library.books.length);
