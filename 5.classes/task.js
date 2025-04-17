@@ -76,23 +76,15 @@ class Library {
   }
 
   findBookBy(type, value) {
-    for (let index = 0; index < this.books.length; index++) {
-      if (this.books[index][type] === value) {
-        return this.books[index];
-      }
-    }
-    return null;
+    const findResult = this.books.find((item) => item[type] === value);
+    return findResult || null;
   }
 
   giveBookByName(bookName) {
-    for (let index = 0; index < this.books.length; index++) {
-      if (this.books[index].name === bookName) {
-        let book = this.books[index];
-        this.books.splice(index, 1);
-        return book;
-      }
-    }
-    return null;
+    const book = this.findBookBy("name", bookName);
+    if (!book) return null;
+    this.books = this.books.filter((item) => item.name !== bookName);
+    return book;
   }
 }
 
@@ -172,7 +164,7 @@ class Student {
   getAverage() {
     let nameSubject = Object.keys(this.marks);
     let avg = nameSubject.reduce((acc, item) => acc + this.getAverageBySubject(item), 0) / nameSubject.length;
-    return avg;
+    return avg || 0;
   }
 } 
 
