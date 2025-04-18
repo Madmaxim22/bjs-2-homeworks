@@ -40,12 +40,12 @@ function getTriangle(a, b, c) {
     return new Triangle(a, b, c);      
   } catch (error) {
     return {
-      area: function () { return "Ошибка! Треугольник не существует" },
-      perimeter: function () { return "Ошибка! Треугольник не существует" }
+      area: "Ошибка! Треугольник не существует",
+      perimeter: "Ошибка! Треугольник не существует"
     }
   }
 }
 
-const triangle = new Triangle(2,5,5);
-console.log(typeof triangle.perimeter);
-console.log(typeof triangle.area);
+const triangle = getTriangle(1,3,100);
+console.log(triangle.area);
+console.log(triangle.perimeter);
