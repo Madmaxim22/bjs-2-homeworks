@@ -10,9 +10,11 @@ function validateCount(value) {
   try {
     return parseCount(value);
   } catch (error) {
-    throw error;
+    return error;
   }
 }
+
+console.log(validateCount("ыфва"))
 
 // Задача 2. Треугольник
 
@@ -25,7 +27,7 @@ class Triangle {
   }
 
   get perimeter() {
-    return this.a + this.b + this.c;
+    return (this.a + this.b + this.c);
   }
 
   get area() {
