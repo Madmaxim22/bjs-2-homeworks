@@ -25,13 +25,21 @@ class Triangle {
   }
 
   get perimeter() {
-    return this.a + this.b + this.c;
+    try {
+      return this.a + this.b + this.c;
+    } catch (error) {
+      return ("Ошибка! Треугольник не существует");
+    }
   }
 
   get area() {
-    let p = this.perimeter / 2;
-    let s = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
-    return Number(s.toFixed(3));
+    try {
+      let p = this.perimeter / 2;
+      let s = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
+      return Number(s.toFixed(3));
+    } catch (error) {
+      return ("Ошибка! Треугольник не существует");
+    }
   }
 }
 
@@ -40,12 +48,14 @@ function getTriangle(a, b, c) {
     return new Triangle(a, b, c);      
   } catch (error) {
     return {
-      area: "Ошибка! Треугольник не существует",
-      perimeter: "Ошибка! Треугольник не существует"
+      get area() {return "Ошибка! Треугольник не существует"},
+      get perimeter() {return "Ошибка! Треугольник не существует"}
     }
   }
 }
 
 const triangle = getTriangle(1,3,100);
+triangle.perimeter = "неправильное значение";
+triangle.area = "неправильное значение";
 console.log(triangle.area);
 console.log(triangle.perimeter);
