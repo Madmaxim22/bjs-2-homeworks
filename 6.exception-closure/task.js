@@ -14,8 +14,6 @@ function validateCount(value) {
   }
 }
 
-console.log(validateCount("ыфва"))
-
 // Задача 2. Треугольник
 
 class Triangle {
@@ -27,13 +25,13 @@ class Triangle {
   }
 
   get perimeter() {
-    return (this.a + this.b + this.c);
+    return this.a + this.b + this.c;
   }
 
   get area() {
     let p = this.perimeter / 2;
     let s = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
-    return s.toFixed(3);
+    return Number(s.toFixed(3));
   }
 }
 
@@ -47,3 +45,7 @@ function getTriangle(a, b, c) {
     }
   }
 }
+
+const triangle = new Triangle(2,5,5);
+console.log(typeof triangle.perimeter);
+console.log(typeof triangle.area);
