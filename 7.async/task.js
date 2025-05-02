@@ -1,8 +1,6 @@
 // Задача 1. Будильник-колыбельная
 
 class AlarmClock {
-  alarmCollection;
-  intervalId;
 
   constructor() {
     this.alarmCollection = [];
@@ -11,19 +9,16 @@ class AlarmClock {
 
   addClock(timeActionStart, action) {
     if (
-      timeActionStart === undefined ||
-      action === undefined ||
-      timeActionStart === null ||
-      action === null
+      typeof timeActionStart !== 'string' || 
+      typeof action !== 'function'
     ) {
       throw new Error("Отсутствуют обязательные аргументы");
     }
-    this.alarmCollection.forEach((element) => {
-      if (element.time === timeActionStart) {
-        console.warn("Уже присутствует звонок на это же время");
-        // return;
-      }
-    });
+    if(this.alarmCollection.some((element) => {
+      return element.time === timeActionStart;
+    })) {
+      console.warn("Уже присутствует звонок на это же время");
+    }
 
     this.alarmCollection.push({
       callback: action,
@@ -39,11 +34,10 @@ class AlarmClock {
   }
 
   getCurrentFormattedTime() {
-    var time = new Date().toLocaleTimeString("ru-Ru", {
+    return new Date().toLocaleTimeString("ru-Ru", {
       hour: "2-digit",
       minute: "2-digit",
     });
-    return time;
   }
 
   start() {
